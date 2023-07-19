@@ -11,9 +11,11 @@ def download_video():
         yt = YouTube(url, on_progress_callback=on_progress)
         video = yt.streams.get_highest_resolution()
 
+        download_folder = os.path.expanduser("~") + "/Downloads"
+
         title.configure(text=video.title, text_color="white")
         finishedLabel.configure(text="")
-        video.download()
+        video.download(download_folder)
         finishedLabel.configure(text="Video Downloaded", text_color="green")
     except:
         finishedLabel.configure(text="Error: Video not found", text_color="red")
